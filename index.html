@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="THis a smal mini time management web app that helps users to add task , timer and check their progress"
+    />
+    <!--Linking external font-family-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!--Linking fontawesome to html to access icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script defer src="./js/main.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Focus and Learn</title>
+  </head>
+  <body>
+    <!--Building the Dashboard-->
+    <main>
+      <section class="dashboard">
+        <div class="sidebar">
+          <header class="header">
+            <h1 class="tab-name">Focusly</h1>
+            <span><i class="fa-solid fa-square-minus"></i></span>
+          </header>
+          <nav class="navigates">
+            <ul class="nav-tabs">
+              <li class="active-tab nav-tab" data-tab="1">
+                <span><i class="fa-solid fa-grip"></i></span
+                ><span class="tab-name">Dashboard</span>
+              </li>
+
+              <li class="nav-tab" data-tab="2">
+                <span><i class="fa-solid fa-chart-simple"></i></span
+                ><span class="tab-name">Stats</span>
+              </li>
+              <li class="nav-tab" data-tab="3">
+                <span><i class="fa-solid fa-clock-rotate-left"></i></span>
+                <span class="tab-name">History</span>
+              </li>
+              <li class="nav-tab" data-tab="4">
+                <span><i class="fa-solid fa-gears"></i></span>
+                <span class="tab-name">Settings</span>
+              </li>
+            </ul>
+          </nav>
+          <div class="toggle-mode toggle-box">
+            <div class="tog"><span></span></div>
+          </div>
+        </div>
+        <header class="top-header"></header>
+        <div class="content-sections">
+          <section
+            class="tab-section section-details-1 active--tab-section"
+          ></section>
+          <section class="tab-section section-details-2"></section>
+          <section class="tab-section section-details-3"></section>
+          <section class="tab-section section-details-4"></section>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
