@@ -203,7 +203,7 @@ html {
     display: none;
   }
   .dashboard {
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 70px 1fr;
   }
   .sidebar {
     justify-content: center;

@@ -15,19 +15,19 @@ togleBox.addEventListener("click", function (e) {
   console.log();
 });
 
-//working with link tabs
-addEventListener("click", function (e) {
+tabsContainer.addEventListener("click", function (e) {
+  // Use .closest() to find the parent tab, regardless of where the click occurs inside it.
   const clicked = e.target.closest(".nav-tab");
-  const { tab } = e.target.dataset;
-  if (!tab) return;
+  // Guard clause: if a click occurred outside of a .nav-tab, exit the function.
+  if (!clicked) return;
+  // Now, get the data attribute from the correct parent element.
+  const tab = clicked.dataset.tab;
+
   tabSections.forEach((tab) => tab.classList.remove("active--tab-section"));
-  //delete active class from al tabs
   allTabs.forEach((tab) => tab.classList.remove("active-tab"));
 
-  this.document
+  document
     .querySelector(`.section-details-${tab}`)
     .classList.add("active--tab-section");
-  //add active-tab clas to clicked tab
   clicked.classList.add("active-tab");
 });
-
