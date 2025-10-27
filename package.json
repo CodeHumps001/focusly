@@ -1,0 +1,20 @@
+{
+  "name": "focusly",
+  "version": "1.0.0",
+  "description": "Productivity timer web app",
+  "default": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeHumps001/focusly.git"
+  },
+  "author": "Yaw Fosu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeHumps001/focusly/issues"
+  },
+  "homepage": "https://github.com/CodeHumps001/focusly#readme"
+}
