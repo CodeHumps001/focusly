@@ -76,6 +76,9 @@ text
     font-weight: 900;
   }
 }
+.done {
+  background: #92fba7 !important;
+}
 
 html {
   font-size: 67.75%;
@@ -372,8 +375,8 @@ html {
 .task-card {
   padding: 10px;
   width: 220px;
-  height: 240px;
-  background: #fff;
+  height: 210px;
+  /* background-color: #fff; */
   display: flex;
 
   flex-direction: column;
@@ -385,6 +388,7 @@ html {
   position: relative;
   transition: all 0.4s;
 }
+
 .task-card:hover {
   box-shadow: 1px 7px 5px 0px rgb(222, 222, 222);
 }
@@ -410,6 +414,7 @@ html {
 }
 .cat-time {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 100%;

@@ -16,7 +16,16 @@ export const addTask = function (taskdata) {
   };
 
   state.tasks.push(newTask);
+  saveTasks();
   return newTask;
 };
 
-// get all task
+export const saveTasks = function () {
+  localStorage.setItem("focuslyTasks", JSON.stringify(state.tasks));
+};
+
+export const loadTask = function () {
+  const data = localStorage.getItem("focuslyTasks");
+  if (!data) return;
+  state.tasks = JSON.parse(data);
+};
