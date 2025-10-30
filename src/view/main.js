@@ -3,10 +3,14 @@ class ToggleView {
   tabsContainer = document.querySelector(".nav-tabs");
   tabSections = document.querySelectorAll(".tab-section");
   allTabs = document.querySelectorAll(".nav-tab");
+  formContainer = document.querySelector(".overlay");
+  ShowFormBtn = document.querySelector(".add");
 
   constructor() {
     this.changeModeView();
     this.toggleNavigation();
+    this.hideFormContainer();
+    this.toggleAddTaskForm();
   }
 
   changeModeView() {
@@ -40,6 +44,19 @@ class ToggleView {
         .querySelector(`.section-details-${tab}`)
         .classList.add("active--tab-section");
       clicked.classList.add("active-tab");
+    });
+  }
+  hideFormContainer() {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.formContainer.classList.remove("active-overlay");
+        console.log(e.key);
+      }
+    });
+  }
+  toggleAddTaskForm() {
+    this.ShowFormBtn.addEventListener("click", () => {
+      this.formContainer.classList.toggle("active-overlay");
     });
   }
 }
