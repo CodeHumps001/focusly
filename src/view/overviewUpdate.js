@@ -10,7 +10,7 @@ class OverviewUpdate {
       (task) => task.status === "pending"
     ).length;
     const complete = state.tasks.filter(
-      (task) => task.status === "complete"
+      (task) => task.status === "completed"
     ).length;
 
     const overdue = state.tasks.filter((t) => {

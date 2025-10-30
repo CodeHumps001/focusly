@@ -9,6 +9,7 @@ const controlAddTask = function () {
   model.addTask(addTask);
   taskView.getDeadlineDate(model.state.tasks.deadline);
   taskView.render(model.state.tasks);
+  overviewUpdate.getOverviewValues(model.state);
 };
 
 const controlMarkComplete = function (e) {
@@ -20,6 +21,7 @@ const controlMarkComplete = function (e) {
   currentTask.status = "completed";
 
   console.log(currentTask);
+  overviewUpdate.getOverviewValues(model.state);
 
   taskView.render(model.state.tasks);
   model.saveTasks();
@@ -34,6 +36,7 @@ const controlDeleteTask = function (e) {
   // Create a new array that includes all tasks except the one with the matching ID.
   model.state.tasks = model.state.tasks.filter((t) => t.id !== id);
 
+  overviewUpdate.getOverviewValues(model.state);
   taskView.render(model.state.tasks);
   model.saveTasks();
 };
@@ -42,9 +45,9 @@ const init = function () {
   model.loadTask();
   taskView.render(model.state.tasks);
   modalView.addHandlerSubmit(controlAddTask);
-  overviewUpdate.getOverviewValues(model.state);
   taskView.markTaskAsCompleted(controlMarkComplete);
   taskView.deleteTask(controlDeleteTask);
+  overviewUpdate.getOverviewValues(model.state);
 };
 
 init();

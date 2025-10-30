@@ -5,7 +5,7 @@ export let state = {
 //-- Add new Task --//
 export const addTask = function (taskdata) {
   const newTask = {
-    id: state.tasks.length,
+    id: state.tasks.length + 1,
     name: taskdata.name,
     description: taskdata.description,
     deadline: taskdata.deadline,

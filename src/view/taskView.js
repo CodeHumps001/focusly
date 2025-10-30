@@ -53,7 +53,7 @@ class TaskView {
       .map((task) => {
         return `
          <div class="task-card ${task.status === "completed" ? "done" : ""}">
-                  <span class="id">1</span>
+                  <span class="id">${task.id}</span>
                   <h1>${task.name}</h1>
                   <p>
                     ${task.description}
