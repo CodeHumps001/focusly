@@ -21,5 +21,8 @@
     "core-js": "^3.46.0",
     "parcel": "^2.16.0",
     "regenerator-runtime": "^0.14.1"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1"
   }
 }

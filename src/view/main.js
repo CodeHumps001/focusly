@@ -1,3 +1,4 @@
+import Chart from "chart.js/auto";
 class ToggleView {
   togleBox = document.querySelector(".toggle-box");
   tabsContainer = document.querySelector(".nav-tabs");
@@ -5,10 +6,11 @@ class ToggleView {
   allTabs = document.querySelectorAll(".nav-tab");
   formContainer = document.querySelector(".overlay");
   ShowFormBtn = document.querySelector(".add");
+  statsCanvas = document.getElementById("weekly-chart");
 
   constructor() {
     this.changeModeView();
-    this.toggleNavigation();
+    // this.toggleNavigation();
     this.hideFormContainer();
     this.toggleAddTaskForm();
   }
@@ -26,7 +28,7 @@ class ToggleView {
     });
   }
 
-  toggleNavigation() {
+  toggleNavigation(data) {
     this.tabsContainer.addEventListener("click", (e) => {
       // Use .closest() to find the parent tab, regardless of where the click occurs inside it.
       const clicked = e.target.closest(".nav-tab");
@@ -34,6 +36,9 @@ class ToggleView {
       if (!clicked) return;
       // Now, get the data attribute from the correct parent element.
       const tab = clicked.dataset.tab;
+      if (Number(tab) === 2) {
+        this.renderWeeklyChart(data);
+      }
 
       this.tabSections.forEach((tab) =>
         tab.classList.remove("active--tab-section")
@@ -58,6 +63,32 @@ class ToggleView {
     this.ShowFormBtn.addEventListener("click", () => {
       this.formContainer.classList.toggle("active-overlay");
     });
+  }
+
+  renderWeeklyChart(data) {
+    if (!this.statsCanvas) return;
+
+    const ctx = this.statsCanvas.getContext("2d");
+
+    console.log("Chart data:", data.weeklyCounts);
+
+    // Prevent duplicate chart overlays
+    if (this.weeklyChart) this.weeklyChart.destroy();
+
+    this.weeklyChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: data.days,
+        datasets: [
+          {
+            label: "Tasks Completed",
+            data: data.weeklyCounts,
+          },
+        ],
+      },
+    });
+    // Force the chart to update
+    this.weeklyChart.update();
   }
 }
 

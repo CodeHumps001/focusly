@@ -5,6 +5,7 @@ import modalView from "./view/modalView.js";
 import overviewUpdate from "./view/overviewUpdate.js";
 import MotivationView from "./view/motivationVIew.js";
 import FilterView from "./view/filterView.js";
+
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import { async } from "regenerator-runtime";
@@ -32,6 +33,12 @@ const fetchMotivation = async function () {
   }
 };
 
+const controlStatsWeekly = function () {
+  const weeklyData = model.getWeeklyTaskData(model.state.tasks);
+  return weeklyData;
+};
+const chartData = controlStatsWeekly();
+
 // console.log(setInterval(() => fetchMotivation(), 6000));
 
 const controlAddTask = function () {
@@ -49,11 +56,18 @@ const controlMarkComplete = function (e) {
   const id = +clicked.dataset.complete;
   const [currentTask] = model.state.tasks.filter((t) => t.id === id);
   currentTask.status = "completed";
+  currentTask.completionDate = new Date().toISOString();
+  console.log(model.state.tasks);
 
   overviewUpdate.getOverviewValues(model.state);
 
+  const chartData = controlStatsWeekly();
+  ToggleView.renderWeeklyChart(chartData);
+  ToggleView.toggleNavigation(chartData);
+
   taskView.render(model.state.tasks);
   model.saveTasks();
+  ToggleView.renderWeeklyChart(chartData);
 };
 
 const controlDeleteTask = function (e) {
@@ -91,7 +105,10 @@ const init = function () {
   taskView.markTaskAsCompleted(controlMarkComplete);
   taskView.deleteTask(controlDeleteTask);
   overviewUpdate.getOverviewValues(model.state);
-  fetchMotivation();
+  // fetchMotivation();
+  model.getWeeklyTaskData(model.state.tasks);
+  ToggleView.renderWeeklyChart(chartData);
+  ToggleView.toggleNavigation(chartData);
 };
 
 init();

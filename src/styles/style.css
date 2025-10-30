@@ -494,6 +494,43 @@ html {
 .section-details-2 {
   display: none;
 }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 300px 1fr;
+  gap: 30px;
+  justify-items: center;
+}
+.week {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  grid-column: span 2;
+  text-align: center;
+  padding: 20px 10px 10px 10px;
+  color: #0ccf33;
+  justify-items: center;
+}
+
+.category-grid {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 20px 10px 10px 10px;
+  color: #0ccf33;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+}
+.complete-grid {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 20px 10px 10px 10px;
+  color: #0ccf33;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+}
+
 .section-details-3 {
   display: none;
 }
