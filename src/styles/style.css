@@ -75,9 +75,12 @@ text
     color: #fff;
     font-weight: 900;
   }
-}
-.done {
-  background: #92fba7 !important;
+  .task-card {
+    box-shadow: 1px 1px 10px 0px rgb(82, 82, 82);
+  }
+  .task-card:hover {
+    box-shadow: 1px 7px 10px 0px rgb(45, 45, 45);
+  }
 }
 
 html {
@@ -393,7 +396,9 @@ html {
   position: relative;
   transition: all 0.4s;
 }
-
+.done {
+  background: #92fba7 !important;
+}
 .task-card:hover {
   box-shadow: 1px 7px 5px 0px rgb(222, 222, 222);
 }
@@ -430,7 +435,7 @@ html {
   background: rgb(165, 4, 66);
   padding: 5px 5px;
   border-radius: 160px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #fff;
   text-align: center;

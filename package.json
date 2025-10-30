@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/CodeHumps001/focusly/issues"
   },
-  "homepage": "https://github.com/CodeHumps001/focusly#readme"
+  "homepage": "https://github.com/CodeHumps001/focusly#readme",
+  "devDependencies": {
+    "core-js": "^3.46.0",
+    "parcel": "^2.16.0",
+    "regenerator-runtime": "^0.14.1"
+  }
 }
