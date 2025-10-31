@@ -6,7 +6,7 @@ Focusly is a clean and engaging productivity app designed to keep you focused on
 
 ## 🚀 Live Demo
 
-🔗 Deployed on Netlify: _Coming soon…_
+🔗 Deployed on Netlify:(https://focuslypro.netlify.app/)
 
 ---
 
