@@ -81,6 +81,9 @@ text
   .task-card:hover {
     box-shadow: 1px 7px 10px 0px rgb(45, 45, 45);
   }
+  .completion-div {
+    box-shadow: 1px 7px 5px 0px rgb(33, 33, 33);
+  }
 }
 
 html {
@@ -472,12 +475,14 @@ html {
 }
 .task-card .crud .complete {
   color: #0ccf33;
+  cursor: pointer;
 }
 .task-card .crud .edit {
   color: #7048e8;
 }
 .task-card .crud .delete {
   color: #fa5252;
+  cursor: pointer;
 }
 .category-personal {
   background-color: #363636;
@@ -497,15 +502,39 @@ html {
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 300px 1fr;
-  gap: 30px;
-  justify-items: center;
+  grid-template-rows: 300px 300px;
+  gap: 15px;
+  /* justify-items: center; */
+}
+.completion-div {
+  height: 100%;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  box-shadow: 1px 7px 5px 0px rgb(222, 222, 222);
+}
+.completion-div span {
+  font-size: 10rem;
+  font-weight: 900;
+}
+.completion-div-high {
+  color: #0ccf33;
+}
+.completion-div-medium {
+  color: #c2b416;
+}
+.completion-div-low {
+  color: #fa5252;
 }
 .week {
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+
   grid-column: span 2;
+  grid-row: 2;
   text-align: center;
   padding: 20px 10px 10px 10px;
   color: #0ccf33;
@@ -513,7 +542,6 @@ html {
 }
 
 .category-grid {
-  background-color: #ffffff;
   text-align: center;
   padding: 20px 10px 10px 10px;
   color: #0ccf33;
@@ -522,7 +550,6 @@ html {
   justify-items: center;
 }
 .complete-grid {
-  background-color: #ffffff;
   text-align: center;
   padding: 20px 10px 10px 10px;
   color: #0ccf33;
@@ -541,14 +568,16 @@ html {
   display: grid;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 900px) {
   .tab-name {
     display: none;
   }
   .dashboard {
-    grid-template-columns: 70px 1fr;
+    display: flex;
+    flex-direction: column;
   }
   .sidebar {
+    display: none;
     justify-content: center;
     align-items: center;
     padding: 0 !important;

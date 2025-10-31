@@ -57,3 +57,31 @@ export function getWeeklyTaskData(tasks) {
 
   return { days, weeklyCounts };
 }
+
+export function getCategoryBreakdown(tasks) {
+  const categories = ["personal", "studies", "project", "collaboration"];
+
+  const counts = {
+    personal: 0,
+    studies: 0,
+    project: 0,
+    collaboration: 0,
+  };
+
+  tasks.forEach((task) => {
+    if (categories.includes(task.category)) {
+      counts[task.category]++;
+    }
+  });
+
+  return counts;
+}
+
+export function getCompletionRate(tasks) {
+  if (!tasks.length) return 0;
+
+  const completedCount = tasks.filter((t) => t.status === "completed").length;
+  const completionRate = (completedCount / tasks.length) * 100;
+
+  return Math.round(completionRate); // Example: 67%
+}

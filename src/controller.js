@@ -5,6 +5,7 @@ import modalView from "./view/modalView.js";
 import overviewUpdate from "./view/overviewUpdate.js";
 import MotivationView from "./view/motivationVIew.js";
 import FilterView from "./view/filterView.js";
+import CategoryChartBreakdown from "./view/categoryChartView.js";
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";
@@ -47,6 +48,8 @@ const controlAddTask = function () {
   taskView.getDeadlineDate(model.state.tasks.deadline);
   taskView.render(model.state.tasks);
   overviewUpdate.getOverviewValues(model.state);
+  updateStats();
+  updateCompletionRate();
 };
 
 const controlMarkComplete = function (e) {
@@ -68,6 +71,8 @@ const controlMarkComplete = function (e) {
   taskView.render(model.state.tasks);
   model.saveTasks();
   ToggleView.renderWeeklyChart(chartData);
+  updateStats();
+  updateCompletionRate();
 };
 
 const controlDeleteTask = function (e) {
@@ -81,6 +86,8 @@ const controlDeleteTask = function (e) {
 
   overviewUpdate.getOverviewValues(model.state);
   taskView.render(model.state.tasks);
+  updateStats();
+  updateCompletionRate();
   model.saveTasks();
 };
 
@@ -97,15 +104,35 @@ const controlFilterDisplay = function () {
   taskView.render(filterTask);
 };
 
+function updateStats() {
+  const categoryCounts = model.getCategoryBreakdown(model.state.tasks);
+  CategoryChartBreakdown.renderCategoryChart(categoryCounts);
+}
+
+function updateCompletionRate() {
+  const rate = model.getCompletionRate(model.state.tasks);
+  const completeEl = document.getElementById("completionRate");
+  completeEl.textContent = `${rate}%`;
+  if (rate > 70) {
+    completeEl.classList.add("completion-div-high");
+  } else if (rate > 50) {
+    completeEl.classList.add("completion-div-medium");
+  } else if (rate < 50) {
+    completeEl.classList.add("completion-div-low");
+  }
+}
+
 const init = function () {
   model.loadTask();
+  updateStats();
+  updateCompletionRate();
   FilterView.getFilterDisplay(controlFilterDisplay);
   taskView.render(model.state.tasks);
   modalView.addHandlerSubmit(controlAddTask);
   taskView.markTaskAsCompleted(controlMarkComplete);
   taskView.deleteTask(controlDeleteTask);
   overviewUpdate.getOverviewValues(model.state);
-  // fetchMotivation();
+  fetchMotivation();
   model.getWeeklyTaskData(model.state.tasks);
   ToggleView.renderWeeklyChart(chartData);
   ToggleView.toggleNavigation(chartData);
