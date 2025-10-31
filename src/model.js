@@ -2,6 +2,26 @@ export let state = {
   tasks: [],
 };
 
+export const user = {
+  name: "",
+  joinedDate: "",
+};
+
+export function initUser() {
+  const savedUser = localStorage.getItem("focuslyUser");
+
+  if (savedUser) {
+    Object.assign(user, JSON.parse(savedUser));
+  } else {
+    const name = prompt("Welcome! What's your name?")?.trim() || "User";
+    const joinedDate = new Date().toISOString();
+
+    user.name = name;
+    user.joinedDate = joinedDate;
+
+    localStorage.setItem("focuslyUser", JSON.stringify(user));
+  }
+}
 //-- Add new Task --//
 export const addTask = function (taskdata) {
   const newTask = {
@@ -84,4 +104,31 @@ export function getCompletionRate(tasks) {
   const completionRate = (completedCount / tasks.length) * 100;
 
   return Math.round(completionRate); // Example: 67%
+}
+
+export function getHistoryTimeline(tasks) {
+  const history = {};
+
+  tasks
+    .filter((t) => t.status === "completed" && t.completionDate)
+    .forEach((task) => {
+      const dateObj = new Date(task.completionDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const dateHeader =
+        dateObj.toDateString() === today.toDateString()
+          ? "Today"
+          : dateObj.toLocaleDateString([], {
+              weekday: "long",
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            });
+
+      if (!history[dateHeader]) history[dateHeader] = [];
+      history[dateHeader].push(task);
+    });
+
+  return history;
 }

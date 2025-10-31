@@ -6,6 +6,7 @@ import overviewUpdate from "./view/overviewUpdate.js";
 import MotivationView from "./view/motivationVIew.js";
 import FilterView from "./view/filterView.js";
 import CategoryChartBreakdown from "./view/categoryChartView.js";
+import { showAlert } from "./view/slertView.js";
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";
@@ -50,6 +51,7 @@ const controlAddTask = function () {
   overviewUpdate.getOverviewValues(model.state);
   updateStats();
   updateCompletionRate();
+  showAlert("Task added successfully!", "success");
 };
 
 const controlMarkComplete = function (e) {
@@ -73,6 +75,8 @@ const controlMarkComplete = function (e) {
   ToggleView.renderWeeklyChart(chartData);
   updateStats();
   updateCompletionRate();
+  controlHistory();
+  showAlert("Task completed!", "info");
 };
 
 const controlDeleteTask = function (e) {
@@ -88,6 +92,9 @@ const controlDeleteTask = function (e) {
   taskView.render(model.state.tasks);
   updateStats();
   updateCompletionRate();
+  controlHistory();
+  showAlert("Task deleted!", "delete");
+
   model.saveTasks();
 };
 
@@ -122,10 +129,26 @@ function updateCompletionRate() {
   }
 }
 
+import historyView from "./view/historyView.js";
+
+const controlHistory = function () {
+  const timeline = model.getHistoryTimeline(model.state.tasks);
+  historyView.render(timeline);
+  document.querySelector(".section-details-3").classList.add("flex");
+};
+
+document
+  .querySelector(".section-details-3")
+  .addEventListener("click", controlHistory);
+
+import * as model from "./model.js";
+import HeaderView from "./view/customizeView.js";
+
 const init = function () {
   model.loadTask();
   updateStats();
   updateCompletionRate();
+  controlHistory();
   FilterView.getFilterDisplay(controlFilterDisplay);
   taskView.render(model.state.tasks);
   modalView.addHandlerSubmit(controlAddTask);
@@ -136,6 +159,8 @@ const init = function () {
   model.getWeeklyTaskData(model.state.tasks);
   ToggleView.renderWeeklyChart(chartData);
   ToggleView.toggleNavigation(chartData);
+  model.initUser(); // Load or create user profile
+  HeaderView.renderUser(model.user); // Display in UI
 };
 
 init();
