@@ -768,6 +768,13 @@ html {
 }
 .close-box span {
   cursor: pointer;
+  transition: all 0.4s;
+  background-color: none;
+  padding: 10px;
+  border-radius: 200px;
+}
+.close-box span:hover {
+  box-shadow: 1px 1px 10px 0px red;
 }
 .overlay form {
   padding: 25px;
