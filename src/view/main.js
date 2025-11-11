@@ -7,12 +7,14 @@ class ToggleView {
   formContainer = document.querySelector(".overlay");
   ShowFormBtn = document.querySelector(".add");
   statsCanvas = document.getElementById("weekly-chart");
+  xBtn = document.querySelector(".hide-overlay");
 
   constructor() {
     this.changeModeView();
     // this.toggleNavigation();
     this.hideFormContainer();
     this.toggleAddTaskForm();
+    this.clickHandlerTOHideOverlay();
   }
 
   changeModeView() {
@@ -89,6 +91,14 @@ class ToggleView {
     });
     // Force the chart to update
     this.weeklyChart.update();
+  }
+
+  clickHandlerTOHideOverlay() {
+    this.xBtn.addEventListener("click", (e) => {
+      const clicked = e.target.closest(".close-box");
+      if (!clicked) return;
+      this.formContainer.classList.remove("active-overlay");
+    });
   }
 }
 

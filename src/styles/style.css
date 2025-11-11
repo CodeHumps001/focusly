@@ -758,6 +758,17 @@ html {
 .active-overlay {
   display: flex;
 }
+.close-box {
+  font-size: 3rem;
+  font-weight: bolder;
+
+  width: 100%;
+  padding: 10px 30px;
+  text-align: end;
+}
+.close-box span {
+  cursor: pointer;
+}
 .overlay form {
   padding: 25px;
   width: 70%;

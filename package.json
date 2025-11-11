@@ -19,7 +19,7 @@
   "homepage": "https://github.com/CodeHumps001/focusly#readme",
   "devDependencies": {
     "core-js": "^3.46.0",
-    "parcel": "^2.16.0",
+    "parcel": "^2.16.1",
     "regenerator-runtime": "^0.14.1"
   },
   "dependencies": {

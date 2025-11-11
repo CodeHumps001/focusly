@@ -29,7 +29,6 @@ export const addTask = function (taskdata) {
     name: taskdata.name,
     description: taskdata.description,
     deadline: taskdata.deadline,
-    breakDuration: taskdata.break,
     createdAt: new Date().toISOString(),
 
     status: "pending",

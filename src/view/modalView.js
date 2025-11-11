@@ -14,7 +14,6 @@ class ModalView {
       description: this.description.value,
       deadline: this.deadline.value,
       category: this.taskCategory.value,
-      break: this.breakTime.value,
     };
   }
 
@@ -23,7 +22,6 @@ class ModalView {
       this.description.value =
       this.deadline.value =
       this.taskCategory.value =
-      this.breakTime.value =
         "";
   }
 
